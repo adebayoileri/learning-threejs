@@ -3,14 +3,20 @@ import * as THREE from 'three';
 import SceneInit from '../lib/SceneInit';
 // import { TeapotGeometry } from 'three/examples/jsm/geometries/TeapotGeometry';
 // import { RoundedBoxGeometry } from 'three/examples/jsm/geometries/RoundedBoxGeometry';
-import { GUI } from 'dat.gui'
 
 function App() {
 
-  useEffect(() => {
+  useEffect(async () => {
     const test = new SceneInit('myThreeJSCanvas');
     test.initialize();
     test.animate();
+
+    let gui;
+
+    const initGui = async () => {
+      const dat = await import("dat.gui");
+      gui = new dat.GUI();
+    };
 
     // const boxGeometry = new THREE.BoxGeometry(1, 1, 1, 1, 1, 16);
     // const boxMaterial = new THREE.MeshNormalMaterial({ wireframe: true });
@@ -71,12 +77,11 @@ function App() {
         // boxMesh.position.x = 5;
         // test.scene.add(boxMesh);
 
-    // // DAT.Gui initialize
-    // const gui = new GUI();
-
-    // // use folders
-    // const geometryFolder  = gui.addFolder('Mesh Geomtery');
-    // geometryFolder.open();
+    // DAT.Gui initialize
+    await initGui()
+    // use folders
+    const geometryFolder  = gui.addFolder('Mesh Geomtery');
+    geometryFolder.open();
 
     // const rotationFolder = geometryFolder.addFolder('Rotation');
 
