@@ -52,7 +52,7 @@ function App() {
 
         // box geo
 
-        const earthTexture = new THREE.TextureLoader().load('./src/map.jpeg')
+        const earthTexture = new THREE.TextureLoader().load('./public/map.jpeg')
 
         const sphereGeo = new THREE.SphereGeometry(5);
         const sphereMaterial = new THREE.MeshStandardMaterial({
